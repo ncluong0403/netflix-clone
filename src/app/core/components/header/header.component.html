@@ -1,0 +1,27 @@
+<header class="bg-black py-4 px-8 flex justify-between fixed z-10 w-full">
+  <div class="header-left flex gap-5 items-center">
+    <a>
+      <img src="/assets/netflix.png" alt="netflix-logo" width="110" />
+    </a>
+    <ul *ngFor="let item of navList">
+      <li
+        class="text-white hover:text-gray-400 hover:cursor-pointer transition-[1s]"
+      >
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+  <div class="header-left text-white flex items-center gap-5">
+    <span>
+      Welcome <strong>{{ infoUser.family_name }}</strong>
+    </span>
+    <img
+      src="{{ infoUser.picture }}"
+      alt="avt-user"
+      width="30"
+      class="rounded-full"
+    />
+    &nbsp; |
+    <span>Sign out</span>
+  </div>
+</header>

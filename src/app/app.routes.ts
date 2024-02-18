@@ -4,15 +4,11 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () =>
-      import('./core/components/home/home.component').then(
-        (a) => a.HomeComponent
-      ),
+      import('./pages/home/home.component').then((a) => a.HomeComponent),
   },
   {
     path: 'login',
     loadComponent: () =>
-      import('./core/components/login/login.component').then(
-        (a) => a.LoginComponent
-      ),
+      import('./pages/login/login.component').then((a) => a.LoginComponent),
   },
 ];
