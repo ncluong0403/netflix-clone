@@ -1,0 +1,45 @@
+<div class="relative bg-black bg-opacity-50 min-h-screen">
+  <div class="absolute z-[-1]">
+    <img
+      src="https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a619-a21da22f8999/3bc4304a-4835-4a58-9115-10dd7af3a9e5/VN-en-20240115-trifectadaily-perspective_alpha_website_small.jpg"
+      alt=""
+      class="min-h-screen"
+    />
+  </div>
+  <div
+    class="absolute right-0 left-0 bg-black text-white mx-auto md:w-3/12 p-12 my-36 rounded-lg bg-opacity-80 px-12 py-16 !w-[450px]"
+  >
+    <h1 class="font-bold text-[2rem] py-4 mb-[28px]">Sign in</h1>
+    <form action="" [formGroup]="formLogin" (ngSubmit)="login()">
+      <input
+        type="text"
+        placeholder="Email or phone number"
+        class="px-4 py-4 mb-4 w-full rounded-md text-sm bg-transparent border-[1px] border-slate-500"
+        formControlName="email"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        class="px-4 py-4 mb-4 w-full rounded-md text-sm bg-transparent border-[1px] border-slate-500"
+        formControlName="password"
+      />
+      <button type="submit" class="p-2 bg-red-600 rounded-md w-full mb-4">
+        Sign in
+      </button>
+      <div class="mb-4 text-center text-slate-500">Or</div>
+      <!-- <button
+        type="submit"
+        class="p-2 bg-white rounded-md w-full mb-4 flex justify-center content-center"
+      >
+        <img
+          src="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cpath id='a' d='M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z'/%3E%3C/defs%3E%3CclipPath id='b'%3E%3Cuse xlink:href='%23a' overflow='visible'/%3E%3C/clipPath%3E%3Cpath clip-path='url(%23b)' fill='%23FBBC05' d='M0 37V11l17 13z'/%3E%3Cpath clip-path='url(%23b)' fill='%23EA4335' d='M0 11l17 13 7-6.1L48 14V0H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%2334A853' d='M0 37l30-23 7.9 1L48 0v48H0z'/%3E%3Cpath clip-path='url(%23b)' fill='%234285F4' d='M48 48L17 24l-4-3 35-10z'/%3E%3C/svg%3E"
+          alt=""
+          class="w-5 mr-2"
+        />
+        <span class="text-sm text-black">Login with Google</span>
+      </button> -->
+      <div id="google-btn" class="mb-4 w-full"></div>
+      <div class="text-center">Forgot password?</div>
+    </form>
+  </div>
+</div>
