@@ -1,7 +1,14 @@
-<header class="bg-black py-4 px-8 flex justify-between fixed z-10 w-full">
+<header
+  class="bg-black py-4 px-8 flex justify-between fixed z-10 w-full max-h-[70px]"
+>
   <div class="header-left flex gap-5 items-center">
-    <a>
-      <img src="/assets/netflix.png" alt="netflix-logo" width="110" />
+    <a class="cursor-pointer">
+      <img
+        src="/assets/netflix.png"
+        alt="netflix-logo"
+        width="110"
+        [routerLink]="['']"
+      />
     </a>
     <ul *ngFor="let item of navList">
       <li
@@ -22,6 +29,6 @@
       class="rounded-full"
     />
     &nbsp; |
-    <span>Sign out</span>
+    <button type="button" (click)="signOut()">Sign out</button>
   </div>
 </header>

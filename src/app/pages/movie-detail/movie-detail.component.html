@@ -1,0 +1,26 @@
+<section class="h-screen w-screen text-black absolute pt-[66px]">
+  <div class="relative" *ngIf="movieDetail">
+    <div class="bg-black absolute opacity-50 h-full w-full"></div>
+    <img
+      [src]="'https://image.tmdb.org/t/p/original' + movieDetail.backdrop_path"
+      alt=""
+    />
+    <div class="absolute z-10 text-white top-[40%] px-[100px] max-w-[1000px]">
+      <h1 class="text-6xl font-bold mb-6">{{ movieDetail.title }}</h1>
+      <div class="text-sm opacity-70">
+        {{ movieDetail.release_date.split("-")[0] }} &nbsp;|&nbsp;
+        {{ movieDetail.runtime | transformtime }} &nbsp;| IMDB:
+        {{ movieDetail.vote_average | number : "1.2-2" }}
+      </div>
+      <p class="flex-wrap w-1/2 text-base inline-block mt-6">
+        {{ movieDetail.overview }}
+      </p>
+      <div class="mt-4">
+        <span class="opacity-70 font-bold">Starring: </span>
+        <ng-container *ngFor="let cast of castsMovie; let i = index" ,
+          >{{ cast.name }}{{ i === lastCast ? "." : "," }}
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,9 @@
-<app-header [infoUser]="infoUser" />
-
-<app-banner />
-
-<app-movie-carousel />
+<app-banner
+  [bannerDetail]="bannerDetail$ | async"
+  [bannerVideo]="bannerVideo$ | async"
+/>
+<app-movie-carousel [movieList]="popularMovie" title="Popular Movies" />
+<app-movie-carousel [movieList]="upComingMovie" title="Upcoming Movies" />
+<app-movie-carousel [movieList]="topRatedMovie" title="Top Rated Movies" />
+<app-movie-carousel [movieList]="nowPlayingMovie" title="Now Playing Movies" />
+<app-movie-carousel [movieList]="trendingMovie" title="Trending Movies" />

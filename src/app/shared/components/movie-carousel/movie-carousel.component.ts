@@ -3,23 +3,29 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
-  OnInit,
+  Input,
   ViewChild,
 } from '@angular/core';
 import Swiper from 'swiper';
+import { IMovie } from '../../models/movie-interface';
+import { ImagePipe } from '../../pipes/image.pipe';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-movie-carousel',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ImagePipe, RouterModule],
   templateUrl: './movie-carousel.component.html',
   styleUrl: './movie-carousel.component.scss',
 })
-export class MovieCarouselComponent implements AfterViewInit, OnInit {
-  ngOnInit(): void {}
+export class MovieCarouselComponent implements AfterViewInit {
+  @Input() movieList: IMovie[] = [];
+  @Input() title!: string;
+
   ngAfterViewInit(): void {
     this.initSwiper();
   }
+
   @ViewChild('swiperContainer') swiperContainer!: ElementRef;
   private initSwiper() {
     return new Swiper(this.swiperContainer.nativeElement, {
@@ -27,6 +33,7 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit {
       slidesPerGroup: 2,
       centeredSlides: true,
       loop: true,
+      autoplay: true,
       breakpoints: {
         600: {
           slidesPerView: 2,
@@ -54,7 +61,7 @@ export class MovieCarouselComponent implements AfterViewInit, OnInit {
         },
         1800: {
           slidesPerView: 5,
-          slidesPerGroup: 6,
+          slidesPerGroup: 5,
           spaceBetween: 5,
           centeredSlides: false,
         },

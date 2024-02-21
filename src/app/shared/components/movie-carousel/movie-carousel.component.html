@@ -1,47 +1,43 @@
-<div class="swiper" #swiperContainer class="mt-5">
-  <div class="swiper-wrapper">
-    <div
-      class="swiper-slide"
-      *ngFor="let item of [1, 2, 3, 5, 6, 7, 8, 8, 9, 9]"
-    >
+<div class="text-2xl font-bold pt-5 px-10 text-white">
+  {{ title }}
+</div>
+
+<div class="swiper" #swiperContainer class="relative">
+  <div class="swiper-wrapper my-5 mx-10">
+    <div class="swiper-slide" *ngFor="let movie of movieList">
       <div class="bg-white rounded-3xl shadow-xl max-w-[300px]">
         <div
           class="grid rounded-3xl max-w-[300px] shadow-sm bg-slate-100 flex-col"
         >
           <img
-            src="https://m.media-amazon.com/images/M/MV5BMzI0NmVkMjEtYmY4MS00ZDMxLTlkZmEtMzU4MDQxYTMzMjU2XkEyXkFqcGdeQXVyMzQ0MzA0NTM@._V1_QL75_UX380_CR0,1,380,562_.jpg"
-            class="rounded-t-3xl justify-center grid object-cover w-full h-[250px]"
-            alt="movie.title"
+            [src]="movie.poster_path | image"
+            class="rounded-t-3xl justify-center grid object-cover w-full h-[200px]"
+            alt="movie-title"
           />
 
-          <div class="group p-6 grid z-10">
+          <div class="group p-4 grid z-10">
             <a
-              href="{`${movie.link}`}"
-              class="group-hover:text-cyan-700 font-bold sm:text-2xl line-clamp-2"
+              [routerLink]="['movie', movie.id]"
+              class="group-hover:text-cyan-700 font-bold sm:text-2xl whitespace-nowrap text-ellipsis overflow-hidden"
             >
-              Spider-Man: Across the Spider-Verse
+              {{ movie.title }}
             </a>
-            <span class="text-slate-400 pt-2 font-semibold"> (2023) </span>
-            <div class="h-28">
-              <span
-                class="line-clamp-4 py-2 text-sm font-light leading-relaxed"
-              >
-                Miles Morales catapults across the Multiverse, where he
-                encounters a team of Spider-People charged with protecting its
-                very existence. When the heroes clash on how to handle a new
-                threat, Miles must redefine what it means to be a hero.
+            <span class="text-slate-400 pt-2 font-semibold">
+              {{ movie.release_date | date : "yyyy" }}
+            </span>
+            <div>
+              <span class="line-clamp-4 pt-2 text-sm font-light h-[88px]">
+                {{ movie.overview }}
               </span>
-            </div>
-            <div class="grid-cols-2 flex group justify-between">
-              <div class="font-black flex flex-col">
-                <span class="text-yellow-500 text-xl">IMDB SCORE</span>
+              <div class="font-black flex justify-between items-center mt-5">
+                <span class="text-yellow-500 text-lg">IMDB SCORE</span>
                 <span
-                  class="text-3xl flex gap-x-1 items-center group-hover:text-yellow-600"
+                  class="text-xl flex gap-x-1 items-center group-hover:text-yellow-600"
                 >
-                  8.8
+                  {{ movie.vote_average | number : "1.2-2" }}
                   <svg
-                    width="24px"
-                    height="24px"
+                    width="15px"
+                    height="15px"
                     viewBox="0 0 24 24"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -63,15 +59,12 @@
                   </svg>
                 </span>
               </div>
-              <div class="flex flex-col items-end">
-                <span class="text-3xl font-bold gap-x-2 text-slate-300">
-                  # 8
-                </span>
-              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div> -->
 </div>

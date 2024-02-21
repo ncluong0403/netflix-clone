@@ -1,5 +1,5 @@
 <iframe
-  src="https://www.youtube.com/embed/egkeFvm26pc?loop=1&mute=1&autoplay=1&controls=0"
+  [src]="videoUrl | safe"
   frameborder="0"
   class="w-screen h-screen aspect-auto absolute"
 ></iframe>
@@ -8,12 +8,9 @@
   <div
     class="absolute bg-gradient-to-r from-gray-800 h-screen pt-[25%] text-white px-24"
   >
-    <h1 class="text-6xl font-bold mb-8">Kung Fu Panda 4</h1>
+    <h1 class="text-6xl font-bold mb-8">{{ bannerDetail?.original_title }}</h1>
     <p class="flex-wrap w-1/4 text-lg inline-block">
-      After Po is tapped to become the Spiritual Leader of the Valley of Peace,
-      he needs to find and train a new Dragon Warrior, while a wicked sorceress
-      plans to re-summon all the master villains whom Po has vanquished to the
-      spirit realm.
+      {{ bannerDetail?.overview }}
     </p>
     <div class="mt-8">
       <button

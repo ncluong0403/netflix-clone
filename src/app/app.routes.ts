@@ -11,4 +11,12 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./pages/login/login.component').then((a) => a.LoginComponent),
   },
+
+  {
+    path: 'movie/:id',
+    loadComponent: () =>
+      import('./pages/movie-detail/movie-detail.component').then(
+        (a) => a.MovieDetailComponent
+      ),
+  },
 ];
