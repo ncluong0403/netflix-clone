@@ -1,3 +1,4 @@
+<app-header [infoUser]="infoUser" />
 <section class="h-screen w-screen text-black absolute pt-[66px]">
   <div class="relative" *ngIf="movieDetail">
     <div class="bg-black absolute opacity-50 h-full w-full"></div>
@@ -9,10 +10,32 @@
       <h1 class="text-6xl font-bold mb-6">{{ movieDetail.title }}</h1>
       <div class="text-sm opacity-70">
         {{ movieDetail.release_date.split("-")[0] }} &nbsp;|&nbsp;
-        {{ movieDetail.runtime | transformtime }} &nbsp;| IMDB:
-        {{ movieDetail.vote_average | number : "1.2-2" }}
+        {{ movieDetail.runtime | transformtime }} &nbsp;|
+        <span *ngFor="let genre of movieDetail.genres; let i = index"
+          >{{ genre.name }}{{ i === lastGenre ? "" : "," }}
+        </span>
       </div>
-      <p class="flex-wrap w-1/2 text-base inline-block mt-6">
+      <div class="mt-2 flex items-center gap-4">
+        <span class="font-bold text-yellow-300 text-xl"
+          >IMDB: {{ movieDetail.vote_average | number : "1.2-2" }}</span
+        >
+        <ul *ngFor="let src of srcSource">
+          <li class="p-[18px] rounded-full bg-[#042541] relative">
+            <img
+              [src]="src"
+              alt=""
+              class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4"
+            />
+            <!-- <app-svg
+              [class]="
+                'absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4'
+              "
+              [src]="src"
+            /> -->
+          </li>
+        </ul>
+      </div>
+      <p class="flex-wrap w-1/2 text-base inline-block mt-4">
         {{ movieDetail.overview }}
       </p>
       <div class="mt-4">

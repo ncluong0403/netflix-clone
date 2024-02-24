@@ -22,7 +22,6 @@ export class MovieService {
   }
 
   getTopRatedMovies() {
-    console.log();
     return this.http.get<any>(`${url}${MOVIE.TOP_RATED}`, options);
   }
 

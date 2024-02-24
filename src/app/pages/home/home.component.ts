@@ -13,7 +13,12 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BannerComponent, MovieCarouselComponent, CommonModule],
+  imports: [
+    BannerComponent,
+    MovieCarouselComponent,
+    CommonModule,
+    HeaderComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
