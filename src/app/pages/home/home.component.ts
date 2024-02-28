@@ -57,7 +57,7 @@ export class HomeComponent implements OnInit {
             popular.results[11].id
           );
 
-          this.bannerVideo$ = this.movieService.getVideoBanner(
+          this.bannerVideo$ = this.movieService.getVideo(
             popular.results[11].id
           );
           return { now_playing, popular, upcoming, top_rated, trending };

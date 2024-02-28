@@ -1,12 +1,12 @@
 <app-header [infoUser]="infoUser" />
-<section class="h-screen w-screen text-black absolute pt-[66px]">
+<section class="text-black absolute pt-[66px]">
   <div class="relative" *ngIf="movieDetail">
     <div class="bg-black absolute opacity-50 h-full w-full"></div>
     <img
       [src]="'https://image.tmdb.org/t/p/original' + movieDetail.backdrop_path"
       alt=""
     />
-    <div class="absolute z-10 text-white top-[40%] px-[100px] max-w-[1000px]">
+    <div class="absolute z-10 text-white top-[25%] px-[100px] max-w-[1000px]">
       <h1 class="text-6xl font-bold mb-6">{{ movieDetail.title }}</h1>
       <div class="text-sm opacity-70">
         {{ movieDetail.release_date.split("-")[0] }} &nbsp;|&nbsp;
@@ -26,18 +26,30 @@
               alt=""
               class="absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4"
             />
-            <!-- <app-svg
-              [class]="
-                'absolute -translate-x-2/4 -translate-y-2/4 left-2/4 top-2/4'
-              "
-              [src]="src"
-            /> -->
           </li>
         </ul>
+        <div class="flex gap-3 hover:opacity-60 cursor-pointer">
+          <img src="./assets/play-button.svg" alt="" />
+          <button
+            data-modal-target="movie-trailer-modal"
+            data-modal-toggle="movie-trailer-modal"
+            class="block w-full"
+            type="button"
+          >
+            Play Trailer
+          </button>
+        </div>
+        <div
+          class="block space-y-4 md:flex md:space-y-0 md:space-x-4 rtl:space-x-reverse"
+        ></div>
+        <app-modal-trailer [videoKey]="videoKey"></app-modal-trailer>
       </div>
-      <p class="flex-wrap w-1/2 text-base inline-block mt-4">
-        {{ movieDetail.overview }}
-      </p>
+      <div class="flex-wrap w-1/2 text-base inline-block mt-4">
+        <h1 class="font-bold text-xl mb-2">Overview</h1>
+        <p>
+          {{ movieDetail.overview }}
+        </p>
+      </div>
       <div class="mt-4">
         <span class="opacity-70 font-bold">Starring: </span>
         <ng-container *ngFor="let cast of castsMovie; let i = index" ,
@@ -45,5 +57,9 @@
         </ng-container>
       </div>
     </div>
+  </div>
+
+  <div class="content-wrapper mt-7">
+    <div class="py-8 px-10">Top Billed Cast</div>
   </div>
 </section>

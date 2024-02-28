@@ -4,3 +4,11 @@
 @tailwind utilities;
 @import "../node_modules/swiper/swiper.scss";
 @import "../node_modules/swiper/swiper-bundle.css";
+
+body {
+  div[modal-backdrop] {
+    z-index: 1 !important;
+    background-color: black;
+    opacity: 0.5;
+  }
+}

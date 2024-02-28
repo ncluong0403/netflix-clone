@@ -52,7 +52,7 @@ export class MovieService {
     return this.http.get<any>(`${url}/movie/${id}?language=en-US`, options);
   }
 
-  getVideoBanner(id: number) {
+  getVideo(id: number) {
     return this.http.get<any>(
       `${url}/movie/${id}/videos?language=en-US`,
       options

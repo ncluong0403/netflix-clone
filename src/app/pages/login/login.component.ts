@@ -27,7 +27,7 @@ export class LoginComponent {
     const infoUserLoggedExisted = JSON.parse(
       sessionStorage.getItem('infoUserLogged') as string
     );
-    if (!infoUserLoggedExisted && google) {
+    if (!infoUserLoggedExisted) {
       google.accounts.id.initialize({
         client_id:
           '167079169649-kn5aaqrj6bqol413hmqvr63njbacf9cp.apps.googleusercontent.com',
