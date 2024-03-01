@@ -1,4 +1,4 @@
-export const MOVIE = {
+export const MOVIE_URL = {
   TOP_RATED: '/movie/top_rated?language=en-US&page=1',
   POPULAR: '/movie/popular?language=en-US&page=1',
   UP_COMING: '/movie/upcoming?language=en-US&page=1',

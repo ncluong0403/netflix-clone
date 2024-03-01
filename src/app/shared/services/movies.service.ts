@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { MOVIE } from '../../constants/movieUrl';
+import { MOVIE_URL } from '../../constants/movieUrl';
 
 const options = {
   headers: {
@@ -18,30 +18,30 @@ export class MovieService {
   constructor() {}
 
   getPopularMovies() {
-    return this.http.get<any>(`${url}${MOVIE.POPULAR}`, options);
+    return this.http.get<any>(`${url}${MOVIE_URL.POPULAR}`, options);
   }
 
   getTopRatedMovies() {
-    return this.http.get<any>(`${url}${MOVIE.TOP_RATED}`, options);
+    return this.http.get<any>(`${url}${MOVIE_URL.TOP_RATED}`, options);
   }
 
   getNowPlayingMovies() {
-    return this.http.get<any>(`${url}${MOVIE.NOW_PLAYING}`, options);
+    return this.http.get<any>(`${url}${MOVIE_URL.NOW_PLAYING}`, options);
   }
 
   getUpComingMovies() {
-    return this.http.get<any>(`${url}${MOVIE.UP_COMING}`, options);
+    return this.http.get<any>(`${url}${MOVIE_URL.UP_COMING}`, options);
   }
 
   getTrendingMovies() {
-    return this.http.get<any>(`${url}${MOVIE.TRENDING_MOVIE}`, options);
+    return this.http.get<any>(`${url}${MOVIE_URL.TRENDING_MOVIE}`, options);
   }
 
   getMovieDetail(id: string) {
     return this.http.get<any>(`${url}/movie/${id}?language=en-US`, options);
   }
 
-  getCastsMovie(id: string) {
+  getCastAndCrewMovie(id: string) {
     return this.http.get<any>(
       `${url}/movie/${id}/credits?language=en-US`,
       options

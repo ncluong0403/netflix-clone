@@ -1,6 +1,6 @@
 declare const google: any;
 import { jwtDecode } from 'jwt-decode';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, NgZone, inject } from '@angular/core';
 import {
   FormBuilder,
   FormsModule,
@@ -22,7 +22,7 @@ export class LoginComponent {
     password: [''],
   });
   private router = inject(Router);
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private zone: NgZone) {}
   ngOnInit(): void {
     const infoUserLoggedExisted = JSON.parse(
       sessionStorage.getItem('infoUserLogged') as string
@@ -49,7 +49,9 @@ export class LoginComponent {
     if (res) {
       const payload = jwtDecode(res.credential) as string;
       sessionStorage.setItem('infoUserLogged', JSON.stringify(payload));
-      this.router.navigate(['']);
+      this.zone.run(() => {
+        this.router.navigate(['']);
+      });
     }
   }
 }

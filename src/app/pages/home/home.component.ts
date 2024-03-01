@@ -54,11 +54,11 @@ export class HomeComponent implements OnInit {
       .pipe(
         map(([now_playing, popular, upcoming, top_rated, trending]) => {
           this.bannerDetail$ = this.movieService.getBannerDetail(
-            popular.results[11].id
+            upcoming.results[0].id
           );
 
           this.bannerVideo$ = this.movieService.getVideo(
-            popular.results[11].id
+            upcoming.results[0].id
           );
           return { now_playing, popular, upcoming, top_rated, trending };
         })

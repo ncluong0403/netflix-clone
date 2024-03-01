@@ -1,3 +1,4 @@
+import { megaMenu, sourceSvg } from './../../core/others/movie';
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MovieService } from '../../shared/services/movies.service';
@@ -23,21 +24,19 @@ import Swiper from 'swiper';
   styleUrl: './movie-detail.component.scss',
 })
 export class MovieDetailComponent {
-  @ViewChild('swiperContainer') swiperContainer!: ElementRef;
+  @ViewChild('swiperContainer', { static: true }) swiperContainer!: ElementRef;
   movieDetail!: IMovieDetail;
   castsMovie!: any;
+  crewMovie!: any;
   videoKey!: string;
   infoUser!: UserType;
   lastCast!: number;
   lastGenre!: number;
-  items = [1, 2, 3, 4, 5]; // Example data
+  originalLanguage: string = '';
+  // play = false;
 
-  srcSource = [
-    './assets/add-list.svg',
-    './assets/heart-full.svg',
-    './assets/bookmark.svg',
-    './assets/star.svg',
-  ];
+  iconsSvg = sourceSvg;
+  menuItems = megaMenu;
 
   movieService = inject(MovieService);
   route = inject(ActivatedRoute);
@@ -50,22 +49,48 @@ export class MovieDetailComponent {
     const id = this.route.snapshot.params['id'];
     const sources = [
       this.movieService.getMovieDetail(id),
-      this.movieService.getCastsMovie(id),
+      this.movieService.getCastAndCrewMovie(id),
       this.movieService.getVideo(id),
     ];
     forkJoin(sources)
       .pipe(
-        map(([movieDetail, castsMovie, videoDetail]) => {
-          return { movieDetail, castsMovie, videoDetail };
+        map(([movieDetail, castAndCrewMovie, videoDetail]) => {
+          return { movieDetail, castAndCrewMovie, videoDetail };
         })
       )
       .subscribe((res: any) => {
         this.movieDetail = res.movieDetail;
-        this.castsMovie = res.castsMovie.cast.slice(0, 20);
+        this.originalLanguage = res.movieDetail.spoken_languages.filter(
+          (language: any) =>
+            language.iso_639_1 === res.movieDetail.original_language
+        )[0].english_name;
+        this.castsMovie = res.castAndCrewMovie.cast
+          .filter((cast: any) => cast.profile_path !== null)
+          .slice(0, 10);
+
+        this.crewMovie = res.castAndCrewMovie.crew.filter(
+          (crew: any) => crew.job === 'Director'
+        )[0];
         this.videoKey =
           res.videoDetail.results[res.videoDetail.results.length - 1].key;
         this.lastCast = this.castsMovie.length - 1;
         this.lastGenre = this.movieDetail.genres.length - 1;
       });
+  }
+
+  ngAfterContentInit(): void {
+    this.initSwiper();
+  }
+
+  private initSwiper() {
+    return new Swiper(this.swiperContainer.nativeElement, {
+      slidesPerView: 'auto',
+      scrollbar: {
+        draggable: true,
+        el: '.swiper-scrollbar',
+        hide: false,
+      },
+      mousewheel: true,
+    });
   }
 }

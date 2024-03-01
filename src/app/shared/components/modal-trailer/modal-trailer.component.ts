@@ -1,7 +1,6 @@
 import { Component, Input, SimpleChanges } from '@angular/core';
 import { initFlowbite } from 'flowbite';
 import { SafePipe } from '../../pipes/safe.pipe';
-import Vibrant from 'node-vibrant';
 
 @Component({
   selector: 'app-modal-trailer',
@@ -21,7 +20,7 @@ export class ModalTrailerComponent {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['videoKey']?.currentValue) {
-      this.videoUrl = `https://www.youtube.com/embed/${this.videoKey}?autoplay=1&mute=1&loop=1&controls=0&playlist=${this.videoKey}`;
+      this.videoUrl = `https://www.youtube.com/embed/${this.videoKey}?&mute=1&controls=1`;
     }
   }
 }
